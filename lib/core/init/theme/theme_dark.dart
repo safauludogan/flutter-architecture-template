@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_template/core/init/constants/elevation_constants.dart';
+import '../../../product/navigator/navigation_service.dart';
+import '../../extension/context_extension.dart';
 import 'package:flutter_architecture_template/core/init/theme/utils/font_sizes.dart';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class ThemeDark {
   static ThemeDark? _instance;
@@ -45,7 +46,8 @@ class ThemeDark {
 
   AppBarTheme get _appBarTheme => AppBarTheme(
       backgroundColor: ColorConstants.scaffoldBackgroundColor,
-      elevation: ElevationConstants.lowElevation,
+      elevation:
+          GlobalKeyContext.navigatorKey.currentContext?.normalElevation ?? 0,
       centerTitle: true,
       iconTheme: IconThemeData(color: ColorConstants.whiteColor),
       titleTextStyle: _textStyle(

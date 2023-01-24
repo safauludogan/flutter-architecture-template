@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_template/core/constants/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../../product/manager/theme_manager.dart';
@@ -15,9 +16,8 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => context.read<ThemeManager>().changeTheme(),
-          child: const Icon(Icons.change_history),
+          child: Icon(Icons.change_circle, color: ColorConstants.whiteColor),
         ),
-        appBar: AppBar(),
         body: Container());
   }
 }

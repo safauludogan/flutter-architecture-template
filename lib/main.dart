@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_template/product/navigator/navigation_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'product/manager/theme_manager.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      key: GlobalKeyContext.navigatorKey,
       supportedLocales: const [Locale('tr')],
       locale: const Locale('tr'),
     );
