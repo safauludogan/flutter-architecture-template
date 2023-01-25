@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/constants/colors.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/init/toast/toast_service.dart';
 import '../../../product/manager/theme_manager.dart';
 
 class SplashView extends StatefulWidget {
@@ -10,7 +11,7 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> {
+class _SplashViewState extends State<SplashView> with ToastService {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

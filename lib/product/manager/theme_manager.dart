@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_template/core/init/cache/locale_manager.dart';
 import 'package:flutter_architecture_template/core/init/theme/theme_dark.dart';
 
 import '../../core/init/theme/theme_light.dart';
@@ -15,8 +16,16 @@ class ThemeManager extends ChangeNotifier {
 
   ThemeType _currentThemeType = ThemeType.light;
 
-  ThemeData get getThemeData =>
-      (_currentThemeType == ThemeType.light) ? _lightData : ThemeData.dark();
+  ThemeData get getThemeData {
+    String? result =
+        LocaleManager.instance.getStringValue(PreferencesKeys.theme);
+    if (result == null) return _lightData;
+    _currentThemeType =
+        ThemeType.values.firstWhere((element) => element.toString() == result);
+    return (_currentThemeType == ThemeType.light)
+        ? _lightData
+        : ThemeData.dark();
+  }
 
   void changeTheme() {
     switch (_currentThemeType) {
@@ -30,6 +39,8 @@ class ThemeManager extends ChangeNotifier {
         _currentThemeType = ThemeType.light;
         break;
     }
+    LocaleManager.instance.setStringValue(PreferencesKeys.theme,
+        value: _currentThemeType.toString());
     notifyListeners();
   }
 }

@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
+  TextTheme get textTheme => Theme.of(this).textTheme;
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
   double get height => mediaQuery.size.height;
@@ -10,6 +11,16 @@ extension BuildContextExtension on BuildContext {
   double get normalValue => height * .02;
   double get mediumValue => height * .04;
   double get highValue => height * .1;
+
+  //BorderRadius All
+  BorderRadius get borderRadiusLow => BorderRadius.circular(lowValue);
+  BorderRadius get borderRadiusNormal => BorderRadius.circular(normalValue);
+  BorderRadius get borderRadiusMedium => BorderRadius.circular(mediumValue);
+  BorderRadius get borderRadiusHigh => BorderRadius.circular(highValue);
+  //BorderRadius Left
+  BorderRadius get borderRadiusLeftLow => BorderRadius.only(
+      topLeft: Radius.circular(lowValue),
+      bottomLeft: Radius.circular(lowValue));
 
   //PaddingAll
   EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
@@ -38,6 +49,8 @@ extension BuildContextExtension on BuildContext {
   //Duration
   Duration get lowDuration => const Duration(milliseconds: 500);
   Duration get normalDuration => const Duration(seconds: 1);
+  Duration get mediumDuration => const Duration(milliseconds: 1500);
+  Duration get highDuration => const Duration(seconds: 3);
 
   //Elevation
   double get normalElevation => 4.0;
