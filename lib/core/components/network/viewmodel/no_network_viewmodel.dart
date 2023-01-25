@@ -21,6 +21,12 @@ abstract class NoNetworkViewModel extends State<NoNetworkWidget>
     super.initState();
   }
 
+  @override
+  void dispose() {
+    networkChangeManager.dispose();
+    super.dispose();
+  }
+
   Future<void> checkConnectivityFirstTime() async {
     updateUI(await networkChangeManager.checkConnectivityFirstTime());
   }

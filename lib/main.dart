@@ -1,16 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/components/view/no_network_widget.dart';
-import 'package:flutter_architecture_template/core/init/cache/locale_manager.dart';
+import 'package:flutter_architecture_template/core/init/lang/language_manager.dart';
+import 'package:flutter_architecture_template/core/init/locale/localization_manager.dart';
+import 'package:flutter_architecture_template/core/init/main/main_init.dart';
 import 'package:flutter_architecture_template/product/navigator/navigation_service.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'product/manager/theme_manager.dart';
 import 'product/navigator/app_router.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await LocaleManager.instance.init();
+  await MainInit.init();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider<ThemeManager>(create: (_) => ThemeManager.instance)
@@ -19,23 +20,18 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final _appRouter = AppRouter();
   final botToastBuilder = BotToastInit();
 
   MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final router = getIt<AppRouter>();
     return MaterialApp.router(
       theme: context.watch<ThemeManager>().getThemeData,
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: AutoRouterDelegate(router),
+      routeInformationParser: router.defaultRouteParser(),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
       builder: (context, child) {
         child = botToastBuilder(context, child);
         return Column(
@@ -43,8 +39,10 @@ class MyApp extends StatelessWidget {
         );
       },
       key: GlobalKeyContext.navigatorKey,
-      supportedLocales: const [Locale('tr')],
-      locale: const Locale('tr'),
+      localizationsDelegates:
+          LocalizationManager.instance.localizationsDelegates,
+      supportedLocales: LanguageManager.instance.supportedLocales,
+      locale: LanguageManager.instance.trLocale,
     );
   }
 }
