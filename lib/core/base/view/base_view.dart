@@ -5,8 +5,8 @@ class BaseView<T extends Store> extends StatefulWidget {
   const BaseView({
     Key? key,
     required this.viewModel,
-    required this.onPageBuilder,
     required this.onModelReady,
+    required this.onPageBuilder,
     this.onDispose,
   }) : super(key: key);
   final Widget Function(BuildContext context, T value) onPageBuilder;

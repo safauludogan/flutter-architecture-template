@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_template/core/constants/colors.dart';
+import 'package:flutter_architecture_template/core/extension/context_extension.dart';
 import 'package:flutter_architecture_template/core/init/main/main_init.dart';
-import 'package:provider/provider.dart';
-
 import '../../../core/init/toast/toast_service.dart';
-import '../../../product/manager/theme_manager.dart';
 import '../../../product/navigator/app_router.dart';
 
 class SplashView extends StatefulWidget {
@@ -15,22 +12,23 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> with ToastService {
   @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  Future<void> startTimer() async {
+    await Future.delayed(context.lowDuration);
+    getIt<AppRouter>().replace(const HomeRoute());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => context.read<ThemeManager>().changeTheme(),
-          child: Icon(Icons.change_circle, color: ColorConstants.whiteColor),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () => getIt<AppRouter>().push(const HomeRoute()),
-                  child: const Text('Push')),
-              FilledButton(onPressed: () {}, child: Text('Aktif'))
-            ],
-          ),
-        ));
+        body: FutureBuilder(
+      future: startTimer(),
+      builder: (context, snapshot) =>
+          const Center(child: CircularProgressIndicator.adaptive()),
+    ));
   }
 }

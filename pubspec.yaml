@@ -22,18 +22,19 @@ dependencies:
   connectivity_plus: ^3.0.2
   hive_flutter: ^1.1.0
   permission_handler: ^10.2.0
-  fluttertoast: ^6.0.1
+  fluttertoast: ^8.1.2
   keyboard_dismisser: ^3.0.0
   google_nav_bar: ^5.0.6
   flutter_svg: ^1.1.6
   flutter_localizations:
     sdk: flutter
   provider: ^6.0.5
-  vexana: ^2.8.1
+  vexana: ^3.3.2
   shared_preferences: ^2.0.17
   bot_toast: ^4.0.3
   get_it: ^7.2.0
-
+  persistent_bottom_nav_bar: ^5.0.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

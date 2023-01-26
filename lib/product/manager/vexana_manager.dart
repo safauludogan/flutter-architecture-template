@@ -12,7 +12,7 @@ class VexanaManager {
   }
 
   static IRefreshTokenManager? _refreshTokenManager;
-  INetworkManager networkManager = NetworkManager(
+  INetworkManager networkManager = NetworkManager<EmptyModel>(
       isEnableLogger: true,
       isEnableTest: true,
       onRefreshToken: (error, newService) {

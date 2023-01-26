@@ -16,13 +16,15 @@ class ThemeLight {
   final _fontFamily = 'Montserrat';
 
   ThemeData? get theme => ThemeData(
-      useMaterial3: true,
-      scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColor,
-      primaryColor: ColorConstants.primaryColor,
-      appBarTheme: _appBarTheme,
-      textTheme: _textTheme,
-      colorScheme: _colorScheme.copyWith(
-          background: ColorConstants.scaffoldBackgroundColor));
+        useMaterial3: true,
+        scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColor,
+        primaryColor: ColorConstants.primaryColor,
+        appBarTheme: _appBarTheme,
+        textTheme: _textTheme,
+        colorScheme: _colorScheme.copyWith(
+          background: ColorConstants.scaffoldBackgroundColor,
+        ),
+      );
 
   TextTheme get _textTheme => TextTheme(
         headline1: _textStyle(fontSize: FontSizes.extraBig.value),

@@ -10,4 +10,5 @@ abstract class BaseViewModel {
 
   void setContext(BuildContext context);
   void init();
+  void disp();
 }
