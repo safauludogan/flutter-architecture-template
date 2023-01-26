@@ -6,17 +6,17 @@ import '../../constants/colors.dart';
 import '../../extension/context_extension.dart';
 
 class ThemeLight {
+  ThemeLight._init();
   static ThemeLight? _instance;
   static ThemeLight get instance {
     _instance ??= ThemeLight._init();
     return _instance!;
   }
 
-  ThemeLight._init();
-
   final _fontFamily = 'Montserrat';
 
   ThemeData? get theme => ThemeData(
+      useMaterial3: true,
       scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColor,
       primaryColor: ColorConstants.primaryColor,
       appBarTheme: _appBarTheme,

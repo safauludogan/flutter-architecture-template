@@ -22,11 +22,15 @@ class _SplashViewState extends State<SplashView> with ToastService {
           child: Icon(Icons.change_circle, color: ColorConstants.whiteColor),
         ),
         body: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                getIt<AppRouter>().push(const HomeRoute());
-              },
-              child: const Text('Push')),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () => getIt<AppRouter>().push(const HomeRoute()),
+                  child: const Text('Push')),
+              FilledButton(onPressed: () {}, child: Text('Aktif'))
+            ],
+          ),
         ));
   }
 }
