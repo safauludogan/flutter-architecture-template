@@ -13,13 +13,12 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> with ToastService {
   @override
   void initState() {
-    startTimer();
     super.initState();
   }
 
   Future<void> startTimer() async {
     await Future.delayed(context.lowDuration);
-    getIt<AppRouter>().replace(const HomeRoute());
+    getIt<AppRouter>().replace(const LoginRoute());
   }
 
   @override

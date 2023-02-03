@@ -7,5 +7,7 @@ class ProjectItems {
   static const String error = 'Hata';
   static const String info = 'Bilgi';
   static const String warning = 'Uyarı';
-
+  static const String facebook = 'Facebook';
+  static const String google = 'Google';
+  static const String apple = 'Apple';
 }

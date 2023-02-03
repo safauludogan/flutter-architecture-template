@@ -23,6 +23,9 @@ class ColorConstants {
   static Color primaryColor = const Color(0xFF3ba4e6);
   static Color scaffoldBackgroundColor =
       const Color.fromARGB(255, 245, 245, 245);
+  static const Color googleRedColor = Color(0xffDB4437);
+  static const Color facebookBlueColor = Color(0xff4267B2);
+  static const Color appleBlackColor = Color(0xff000000);
 
   static Color whiteColor = Colors.white;
   static Color blackColor = Colors.black;
@@ -40,9 +43,6 @@ class ColorConstants {
     800: ColorConstants.primaryColor800,
     900: ColorConstants.primaryColor900,
   };
-
-
-
 
   //ToastColor
   static Color toastSuccessGreenColor = const Color(0xffc5f7dd);

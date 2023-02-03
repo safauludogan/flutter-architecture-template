@@ -27,19 +27,19 @@ class ThemeLight {
       );
 
   TextTheme get _textTheme => TextTheme(
-        headline1: _textStyle(fontSize: FontSizes.extraBig.value),
-        headline2: _textStyle(fontSize: FontSizes.veryBig.value),
-        headline3: _textStyle(fontSize: FontSizes.big.value),
-        headline4: _textStyle(fontSize: FontSizes.semiBig.value),
-        headline5: _textStyle(fontSize: FontSizes.normal.value),
-        headline6: _textStyle(fontSize: FontSizes.semiNormal.value),
-        subtitle1: _textStyle(fontSize: FontSizes.semiNormal.value),
-        subtitle2: _textStyle(fontSize: FontSizes.normal.value),
-        bodyText1: _textStyle(fontSize: FontSizes.small.value),
-        bodyText2: _textStyle(fontSize: FontSizes.semiBig.value),
-        button: _textStyle(fontSize: FontSizes.semiBig.value),
-        caption: _textStyle(fontSize: FontSizes.semiBig.value),
-        overline: _textStyle(fontSize: FontSizes.semiBig.value),
+        displayLarge: _textStyle(fontSize: FontSizes.extraBig.value),
+        displayMedium: _textStyle(fontSize: FontSizes.veryBig.value),
+        displaySmall: _textStyle(fontSize: FontSizes.big.value),
+        headlineMedium: _textStyle(fontSize: FontSizes.semiBig.value),
+        headlineSmall: _textStyle(fontSize: FontSizes.normal.value),
+        titleLarge: _textStyle(fontSize: FontSizes.semiNormal.value),
+        titleMedium: _textStyle(fontSize: FontSizes.semiNormal.value),
+        titleSmall: _textStyle(fontSize: FontSizes.normal.value),
+        bodyLarge: _textStyle(fontSize: FontSizes.small.value),
+        bodyMedium: _textStyle(fontSize: FontSizes.semiBig.value),
+        bodySmall: _textStyle(fontSize: FontSizes.semiBig.value),
+        labelLarge: _textStyle(fontSize: FontSizes.semiBig.value),
+        labelSmall: _textStyle(fontSize: FontSizes.semiBig.value),
       );
 
   ColorScheme get _colorScheme => ColorScheme.fromSwatch(
@@ -57,7 +57,7 @@ class ThemeLight {
 
   TextStyle _textStyle({required double fontSize, FontWeight? fontWeight}) {
     return TextStyle(
-        color: ColorConstants.blackColor,
+        color: ColorConstants.whiteColor,
         fontFamily: _fontFamily,
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.w500,
