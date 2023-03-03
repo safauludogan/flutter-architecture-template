@@ -17,14 +17,22 @@ class ThemeLight {
 
   ThemeData? get theme => ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColor,
+        scaffoldBackgroundColor: ColorConstants.backgroundColor,
         primaryColor: ColorConstants.primaryColor,
+        dividerColor: Colors.grey,
         appBarTheme: _appBarTheme,
         textTheme: _textTheme,
+        elevatedButtonTheme: _elevatedButtonStyle,
         colorScheme: _colorScheme.copyWith(
-          background: ColorConstants.scaffoldBackgroundColor,
+          background: ColorConstants.backgroundColor,
         ),
       );
+
+  ElevatedButtonThemeData get _elevatedButtonStyle => ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: ColorConstants.primaryColor,
+          textStyle: _textTheme.titleMedium));
 
   TextTheme get _textTheme => TextTheme(
         displayLarge: _textStyle(fontSize: FontSizes.extraBig.value),
@@ -32,32 +40,37 @@ class ThemeLight {
         displaySmall: _textStyle(fontSize: FontSizes.big.value),
         headlineMedium: _textStyle(fontSize: FontSizes.semiBig.value),
         headlineSmall: _textStyle(fontSize: FontSizes.normal.value),
-        titleLarge: _textStyle(fontSize: FontSizes.semiNormal.value),
+        titleLarge: _textStyle(fontSize: FontSizes.semiBig.value),
         titleMedium: _textStyle(fontSize: FontSizes.semiNormal.value),
         titleSmall: _textStyle(fontSize: FontSizes.normal.value),
-        bodyLarge: _textStyle(fontSize: FontSizes.small.value),
+        bodyLarge: _textStyle(fontSize: FontSizes.big.value),
         bodyMedium: _textStyle(fontSize: FontSizes.semiBig.value),
-        bodySmall: _textStyle(fontSize: FontSizes.semiBig.value),
-        labelLarge: _textStyle(fontSize: FontSizes.semiBig.value),
-        labelSmall: _textStyle(fontSize: FontSizes.semiBig.value),
+        bodySmall: _textStyle(fontSize: FontSizes.small.value),
+        labelLarge: _textStyle(fontSize: FontSizes.semiNormal.value),
+        labelMedium: _textStyle(fontSize: FontSizes.small.value),
+        labelSmall: _textStyle(fontSize: FontSizes.extraSmall.value),
       );
 
   ColorScheme get _colorScheme => ColorScheme.fromSwatch(
-      primarySwatch: MaterialColor(ColorConstants.primaryColorList[400]!.value,
-          ColorConstants.primaryColorList));
+        cardColor: Colors.white,
+        primarySwatch: MaterialColor(
+          ColorConstants.primaryColorList[50]!.value,
+          ColorConstants.primaryColorList,
+        ),
+      );
 
   AppBarTheme get _appBarTheme => AppBarTheme(
-      backgroundColor: ColorConstants.scaffoldBackgroundColor,
+      backgroundColor: ColorConstants.backgroundColor,
       elevation:
           GlobalKeyContext.navigatorKey.currentContext?.normalElevation ?? 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: ColorConstants.whiteColor),
+      iconTheme: IconThemeData(color: ColorConstants.primaryColor),
       titleTextStyle: _textStyle(
           fontSize: FontSizes.semiBig.value, fontWeight: FontWeight.w400));
 
   TextStyle _textStyle({required double fontSize, FontWeight? fontWeight}) {
     return TextStyle(
-        color: ColorConstants.whiteColor,
+        color: ColorConstants.textColor,
         fontFamily: _fontFamily,
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.w500,

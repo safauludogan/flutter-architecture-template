@@ -7,6 +7,7 @@ import 'package:flutter_architecture_template/core/init/locale/localization_mana
 import 'package:flutter_architecture_template/core/init/main/main_init.dart';
 import 'package:flutter_architecture_template/product/navigator/navigation_service.dart';
 import 'package:provider/provider.dart';
+import 'core/init/utils/web_scroll_behavior.dart';
 import 'product/manager/theme_manager.dart';
 import 'product/navigator/app_router.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final router = getIt<AppRouter>();
     return MaterialApp.router(
+      scrollBehavior: MyCustomScrollBehavior(),
       theme: context.watch<ThemeManager>().getThemeData,
       routerDelegate: AutoRouterDelegate(router),
       routeInformationParser: router.defaultRouteParser(),

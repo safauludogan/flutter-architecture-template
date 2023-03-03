@@ -10,22 +10,15 @@ class LocaleManager {
 
   SharedPreferences? _preferences;
 
-  Future<void> clearAll() async {
-    _preferences ??= await SharedPreferences.getInstance();
-    await _preferences!.clear();
-  }
+  Future<void> clearAll() async => await _preferences!.clear();
 
   Future<void> setStringValue(PreferencesKeys preferencesKeys,
-      {required String value}) async {
-    _preferences ??= await SharedPreferences.getInstance();
-    _preferences!.setString(preferencesKeys.toString(), value);
-  }
+          {required String value}) async =>
+      await _preferences!.setString(preferencesKeys.toString(), value);
 
   Future<void> setBoolValue(PreferencesKeys preferencesKeys,
-      {required bool value}) async {
-    _preferences ??= await SharedPreferences.getInstance();
-    _preferences?.setBool(preferencesKeys.toString(), value);
-  }
+          {required bool value}) async =>
+      await _preferences?.setBool(preferencesKeys.toString(), value);
 
   String? getStringValue(PreferencesKeys preferencesKeys) =>
       _preferences?.getString(preferencesKeys.toString());
@@ -34,4 +27,4 @@ class LocaleManager {
       _preferences?.getBool(preferencesKeys.toString());
 }
 
-enum PreferencesKeys { theme,token }
+enum PreferencesKeys { token, theme }

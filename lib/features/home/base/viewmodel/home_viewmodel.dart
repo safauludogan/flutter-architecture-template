@@ -26,16 +26,16 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.home),
       title: 'Sayfa1',
-      inactiveColorSecondary: ColorConstants.blackColor,
+      inactiveColorSecondary: Colors.black,
       inactiveColorPrimary: ColorConstants.primaryColor,
-      activeColorSecondary: ColorConstants.whiteColor,
+      activeColorSecondary: Colors.white,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.pages),
       title: 'Sayfa2',
-      inactiveColorSecondary: ColorConstants.blackColor,
+      inactiveColorSecondary: Colors.black,
       inactiveColorPrimary: ColorConstants.primaryColor,
-      activeColorSecondary: ColorConstants.whiteColor,
+      activeColorSecondary: Colors.black,
     ),
   ];
 }

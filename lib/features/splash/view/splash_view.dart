@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_template/core/extension/context_extension.dart';
 import 'package:flutter_architecture_template/core/init/main/main_init.dart';
+import '../../../core/authentication_manager/authentication_manager.dart';
 import '../../../core/init/toast/toast_service.dart';
 import '../../../product/navigator/app_router.dart';
 
@@ -11,14 +11,12 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> with ToastService {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Future<void> startTimer() async {
-    await Future.delayed(context.lowDuration);
-    getIt<AppRouter>().replace(const LoginRoute());
+    if (AuthenticationManager.instance.checkLoginStatus()) {
+      getIt<AppRouter>().replace(const HomeRoute());
+    } else {
+      getIt<AppRouter>().replace(const LoginRoute());
+    }
   }
 
   @override
