@@ -65,11 +65,11 @@ class PersistentTabBarView extends StatelessWidget {
       ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.linear,
-        duration: context.lowDuration,
+        duration: context.navigationDuration,
       );
   ItemAnimationProperties _itemAnimationProperties(BuildContext context) =>
       ItemAnimationProperties(
-        duration: context.lowDuration,
+        duration: context.navigationDuration,
         curve: Curves.ease,
       );
 }

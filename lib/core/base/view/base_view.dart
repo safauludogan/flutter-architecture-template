@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mobx/mobx.dart';
 
 class BaseView<T extends Store> extends StatefulWidget {
@@ -34,5 +35,6 @@ class _BaseViewState<T extends Store> extends State<BaseView<T>> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.onPageBuilder(context, model);
+  Widget build(BuildContext context) =>
+      KeyboardDismisser(child: widget.onPageBuilder(context, model));
 }
