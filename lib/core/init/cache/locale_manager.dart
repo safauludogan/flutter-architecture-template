@@ -34,4 +34,4 @@ class LocaleManager {
       _preferences?.getBool(preferencesKeys.toString());
 }
 
-enum PreferencesKeys { theme }
+enum PreferencesKeys { theme,token }

@@ -3,6 +3,9 @@ import 'package:flutter_architecture_template/core/components/widgets/social/soc
 import 'package:flutter_architecture_template/core/components/widgets/social/social_button.dart';
 import 'package:flutter_architecture_template/core/constants/colors.dart';
 import 'package:flutter_architecture_template/core/extension/context_extension.dart';
+import 'package:flutter_architecture_template/product/navigator/app_router.dart';
+
+import '../../../../core/init/main/main_init.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -26,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
           children: [
             SocialButton(
               socialAdapter: FacebookAdapter(),
-              onComplate: print,
+              onComplate: (result) => getIt<AppRouter>().replace(const HomeRoute()),
             ),
             SocialButton(
               socialAdapter: GoogleAdapter(),
