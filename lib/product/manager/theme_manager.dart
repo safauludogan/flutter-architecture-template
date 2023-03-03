@@ -24,7 +24,7 @@ class ThemeManager extends ChangeNotifier {
         ThemeType.values.firstWhere((element) => element.toString() == result);
     return (_currentThemeType == ThemeType.light)
         ? _lightData
-        : ThemeData.dark();
+        : _darkData;
   }
 
   void changeTheme() {

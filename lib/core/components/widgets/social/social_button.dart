@@ -26,7 +26,7 @@ class SocialButton extends StatelessWidget {
         icon: Icon(socialAdapter.model.icon, color: Colors.white),
         label: Text(
           socialAdapter.model.title,
-          style: context.textTheme.labelSmall,
+          style: context.textTheme.labelSmall!.copyWith(color: Colors.white),
         ));
   }
 }

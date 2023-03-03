@@ -8,10 +8,12 @@ class Page1View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-          onPressed: () => context.read<ThemeManager>().changeTheme(),
-          child: const Text('Change Theme')),
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () => context.read<ThemeManager>().changeTheme(),
+            child: const Text('Change Theme')),
+      ),
     );
   }
 }

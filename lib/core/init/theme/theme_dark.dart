@@ -17,7 +17,7 @@ class ThemeDark {
 
   ThemeData? get theme => ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: ColorConstants.backgroundColor,
+        scaffoldBackgroundColor: Colors.black,
         primaryColor: ColorConstants.primaryColor,
         dividerColor: Colors.grey,
         appBarTheme: _appBarTheme,
