@@ -8,7 +8,7 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'View,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: SplashView, path: 'splashView', initial: true),
+    AutoRoute(page: SplashView, path: '/', initial: true),
     AutoRoute(page: HomeView, path: 'homeView'),
     AutoRoute(page: LoginView, path: 'loginView'),
   ],

@@ -21,15 +21,18 @@ class ColorConstants {
   static Color primaryColor50 = const Color(0xffe2f4fd);
 
   static Color primaryColor = const Color(0xFF3ba4e6);
-  static Color scaffoldBackgroundColor =
-      const Color.fromARGB(255, 245, 245, 245);
+  static Color textColor = const Color(0xff18277a);
+
   static const Color googleRedColor = Color(0xffDB4437);
   static const Color facebookBlueColor = Color(0xff4267B2);
   static const Color appleBlackColor = Color(0xff000000);
+  static const Color backgroundColor = Color(0xFFf5f5f5);
 
-  static Color whiteColor = Colors.white;
-  static Color blackColor = Colors.black;
-  static Color redColor = Colors.red;
+  static Color greyColor = const Color(0xff808080);
+  static Color lightGreyColor = const Color(0xffE2E2E2);
+  static Color softGreyColor = const Color(0xffCCCCCC);
+  static Color semiGreyColor = const Color(0xff9D9D9D);
+  static Color lightBlackColor = const Color(0xff5F5F5F);
 
   static final Map<int, Color> primaryColorList = {
     50: ColorConstants.primaryColor50,
@@ -44,6 +47,11 @@ class ColorConstants {
     900: ColorConstants.primaryColor900,
   };
 
+  static final tabBarLinearGradient = [
+    const Color.fromARGB(255, 82, 143, 255),
+    const Color.fromARGB(255, 64, 195, 255)
+  ];
+
   //ToastColor
   static Color toastSuccessGreenColor = const Color(0xffc5f7dd);
   static Color toastSuccessGreenLeftBorderColor = const Color(0xff3bc279);
@@ -53,4 +61,12 @@ class ColorConstants {
   static Color toastInfoBlueLeftBorderColor = const Color(0xff3e86e7);
   static Color toastWarningOrangeColor = const Color(0xffffe8c3);
   static Color toastWarningOrangeLeftBorderColor = const Color(0xffe8a029);
+
+  //izin status color
+  static Color deniedColor = const Color(0xffE33147);
+  static Color deniedLightColor = const Color.fromARGB(255, 250, 243, 242);
+  static Color acceptColor = const Color(0xff2AA748);
+  static Color acceptLightColor = const Color.fromARGB(255, 244, 252, 246);
+  static Color waitingColor = const Color(0xffE2C34E);
+  static Color waitingLightColor = const Color.fromARGB(255, 248, 247, 239);
 }

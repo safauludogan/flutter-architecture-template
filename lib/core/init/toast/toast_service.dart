@@ -1,11 +1,13 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/components/widgets/svg_widget.dart';
 import 'package:flutter_architecture_template/core/constants/project_variables.dart';
 import 'package:flutter_architecture_template/core/extension/context_extension.dart';
-
+import '../../../product/navigator/app_router.dart';
 import '../../constants/colors.dart';
 import '../../constants/project_items.dart';
+import '../main/main_init.dart';
 
 enum ToastType { success, error, info, warning }
 
@@ -14,43 +16,60 @@ String? _toastTitle;
 Color? _color;
 Color? _leftBorderColor;
 
-mixin ToastService<T extends StatefulWidget> on State<T> {
+mixin ToastService {
   void showToast({required String label, ToastType? toastType}) {
     _toastTypeControl(toastType);
     BotToast.showCustomNotification(
+        align: kIsWeb ? Alignment.bottomRight : null,
         toastBuilder: (_) => Padding(
-              padding: context.paddingHighHorizontal,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: context.borderRadiusLow,
-                ),
-                color: _color,
-                child: IntrinsicHeight(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _leftBorderContainer,
-                      const SizedBox(width: 10),
-                      _iconWidget,
-                      const SizedBox(width: 5),
-                      Expanded(
-                        child: Padding(
-                          padding: context.paddingLow,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _headerText,
-                              _subText(label),
-                            ],
+              padding: getIt<AppRouter>()
+                  .root
+                  .navigatorKey
+                  .currentContext!
+                  .paddingMediumHorizontal,
+              child: SizedBox(
+                width: kIsWeb ? 350 : null,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: getIt<AppRouter>()
+                        .root
+                        .navigatorKey
+                        .currentContext!
+                        .borderRadiusLow,
+                  ),
+                  color: _color,
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _leftBorderContainer,
+                        const SizedBox(width: 10),
+                        _iconWidget,
+                        const SizedBox(width: 5),
+                        Expanded(
+                          child: Padding(
+                            padding: getIt<AppRouter>()
+                                .root
+                                .navigatorKey
+                                .currentContext!
+                                .paddingLow,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _headerText,
+                                _subText(label),
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-        duration: context.highDuration);
+        duration:
+            getIt<AppRouter>().root.navigatorKey.currentContext!.highDuration);
   }
 
   void _toastTypeControl(ToastType? toastType) {
@@ -86,7 +105,7 @@ mixin ToastService<T extends StatefulWidget> on State<T> {
         height: ProjectVaribles.normalValue,
         width: ProjectVaribles.normalValue,
         child: SvgWidget(
-          svgPath: SvgPath.svgCheckPath,
+          svgPath: _svgPath ?? SvgPath.svgCheckPath,
           size: ProjectVaribles.normalValue,
         ),
       );
@@ -94,18 +113,33 @@ mixin ToastService<T extends StatefulWidget> on State<T> {
   Widget _subText(label) => Text(
         label,
         overflow: TextOverflow.clip,
-        style: context.textTheme.caption!.copyWith(fontWeight: FontWeight.w500),
+        style: getIt<AppRouter>()
+            .root
+            .navigatorKey
+            .currentContext!
+            .textTheme
+            .titleSmall!
+            .copyWith(fontWeight: FontWeight.w500),
       );
 
   Widget get _headerText => Text(
         '${_toastTitle!.toUpperCase()}!',
-        style:
-            context.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
+        style: getIt<AppRouter>()
+            .root
+            .navigatorKey
+            .currentContext!
+            .textTheme
+            .titleSmall!
+            .copyWith(fontWeight: FontWeight.bold),
       );
 
   Widget get _leftBorderContainer => Container(
         decoration: BoxDecoration(
-          borderRadius: context.borderRadiusLeftLow,
+          borderRadius: getIt<AppRouter>()
+              .root
+              .navigatorKey
+              .currentContext!
+              .borderRadiusLeftLow,
           color: _leftBorderColor,
         ),
         height: double.infinity,

@@ -32,6 +32,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget get _bottomNavBar => PersistentTabBarView(
+    controller: viewModel.controller,
         items: viewModel.items,
         screens:viewModel.screens,
       );

@@ -1,10 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/components/widgets/social/social_adapter.dart';
 import 'package:flutter_architecture_template/core/extension/context_extension.dart';
-
 import '../../../../product/logger/global_exception.dart';
-import '../../../constants/colors.dart';
 
 class SocialButton extends StatelessWidget {
   const SocialButton(
@@ -26,10 +23,10 @@ class SocialButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: socialAdapter.model.color),
-        icon: Icon(socialAdapter.model.icon, color: ColorConstants.whiteColor),
+        icon: Icon(socialAdapter.model.icon, color: Colors.white),
         label: Text(
           socialAdapter.model.title,
-          style: context.textTheme.labelSmall,
+          style: context.textTheme.labelSmall!.copyWith(color: Colors.white),
         ));
   }
 }
