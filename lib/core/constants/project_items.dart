@@ -1,7 +1,7 @@
 class ProjectItems {
   ProjectItems._();
 
-  static const String baseUrl = '';
+  static const String baseUrl = 'ss';
   static const String noInternetConnection = 'İnternet bağlantısı yok!!!';
   static const String success = 'Başarılı';
   static const String error = 'Hata';

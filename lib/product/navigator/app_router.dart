@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import '../../features/authentication/login/view/login_view.dart';
-import '../../features/home/base/view/home_view.dart';
-import '../../features/splash/view/splash_view.dart';
+import 'package:flutter_architecture_template/features/authentication/login/view/login_view.dart';
+import 'package:flutter_architecture_template/features/home/base/view/home_view.dart';
+import 'package:flutter_architecture_template/features/splash/view/splash_view.dart';
+
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'View,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: SplashView, path: '/', initial: true),
-    AutoRoute(page: HomeView, path: 'homeView'),
-    AutoRoute(page: LoginView, path: 'loginView'),
-  ],
-)
-class AppRouter extends _$AppRouter {}
+@AutoRouterConfig(replaceInRouteName: 'View,Route')
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: SplashRoute.page, path: '/'),
+        AutoRoute(page: HomeRoute.page, path: '/homeView'),
+        AutoRoute(page: LoginRoute.page, path: '/loginView'),
+      ];
+}

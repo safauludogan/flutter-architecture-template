@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/base/view/base_view.dart';
+import 'package:flutter_architecture_template/core/constants/colors.dart';
+import 'package:flutter_architecture_template/features/home/base/viewmodel/home_viewmodel.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../core/components/widgets/persistent_tabbar_view.dart';
-import '../viewmodel/home_viewmodel.dart';
-
+@RoutePage()
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -12,7 +14,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  var viewModel = HomeViewModel();
+  HomeViewModel viewModel = HomeViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +23,32 @@ class _HomeViewState extends State<HomeView> {
       onDispose: viewModel.disp,
       onModelReady: (model) {
         viewModel = model;
-        model.setContext(context);
-        model.init();
+        model
+          ..setContext(context)
+          ..init();
       },
       onPageBuilder: (context, value) => Scaffold(
         resizeToAvoidBottomInset: false,
-        body: _bottomNavBar,
+        body: Observer(
+          builder: (context) =>
+              Center(child: viewModel.screens[viewModel.pageIndex]),
+        ),
+        bottomNavigationBar: _bottomNavBar,
       ),
     );
   }
 
-  Widget get _bottomNavBar => PersistentTabBarView(
-    controller: viewModel.controller,
-        items: viewModel.items,
-        screens:viewModel.screens,
+  Widget get _bottomNavBar => Observer(
+        builder: (context) => BottomNavigationBar(
+          //type:BottomNavigationBarType.fixed ,
+          elevation: 10,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          currentIndex: viewModel.pageIndex,
+          selectedItemColor: ColorConstants.bottomNavSelectedItemColor,
+          unselectedItemColor: ColorConstants.bottomNavUnselectedItemColor,
+          items: viewModel.items,
+          onTap: (value) => viewModel.changePage = value,
+        ),
       );
 }

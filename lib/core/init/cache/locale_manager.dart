@@ -1,24 +1,28 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleManager {
+  LocaleManager._init();
   static final LocaleManager _instance = LocaleManager._init();
   static LocaleManager get instance => _instance;
-  LocaleManager._init();
   Future<void> init() async {
     _preferences = await SharedPreferences.getInstance();
   }
 
   SharedPreferences? _preferences;
 
-  Future<void> clearAll() async => await _preferences!.clear();
+  Future<void> clearAll() async => _preferences!.clear();
 
-  Future<void> setStringValue(PreferencesKeys preferencesKeys,
-          {required String value}) async =>
-      await _preferences!.setString(preferencesKeys.toString(), value);
+  Future<void> setStringValue(
+    PreferencesKeys preferencesKeys, {
+    required String value,
+  }) async =>
+      _preferences!.setString(preferencesKeys.toString(), value);
 
-  Future<void> setBoolValue(PreferencesKeys preferencesKeys,
-          {required bool value}) async =>
-      await _preferences?.setBool(preferencesKeys.toString(), value);
+  Future<void> setBoolValue(
+    PreferencesKeys preferencesKeys, {
+    required bool value,
+  }) async =>
+      _preferences?.setBool(preferencesKeys.toString(), value);
 
   String? getStringValue(PreferencesKeys preferencesKeys) =>
       _preferences?.getString(preferencesKeys.toString());

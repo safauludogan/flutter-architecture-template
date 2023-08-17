@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SafeCenter extends StatelessWidget {
-  SafeCenter({
-    super.key,
+  const SafeCenter({
     required this.isCenter,
     required this.child,
+    super.key,
   });
-  bool isCenter;
-  Widget child;
+  final bool isCenter;
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     if (isCenter) {

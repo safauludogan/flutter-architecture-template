@@ -26,8 +26,9 @@ extension BuildContextExtension on BuildContext {
 
   //BorderRadius Left
   BorderRadius get borderRadiusLeftLow => BorderRadius.only(
-      topLeft: Radius.circular(lowValue),
-      bottomLeft: Radius.circular(lowValue));
+        topLeft: Radius.circular(lowValue),
+        bottomLeft: Radius.circular(lowValue),
+      );
 
   //PaddingAll
   EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
@@ -77,7 +78,7 @@ extension BuildContextExtension on BuildContext {
   Duration get highDuration => const Duration(seconds: 3);
 
   //Elevation
-  double get normalElevation => 4.0;
-  double get mediumElevation => 6.0;
-  double get heighElevation => 8.0;
+  double get normalElevation => 4;
+  double get mediumElevation => 6;
+  double get heighElevation => 8;
 }

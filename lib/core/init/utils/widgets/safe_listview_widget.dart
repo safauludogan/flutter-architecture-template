@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/extension/context_extension.dart';
 
 class SafeListView extends StatelessWidget {
-  SafeListView(
-      {super.key,
-      required this.itemCount,
-      required this.itemBuilder,
-      required this.noDataWidget,
-      this.description});
-  int? itemCount;
-  Widget? Function(BuildContext, int index) itemBuilder;
-  Widget noDataWidget;
-  String? description;
+  const SafeListView(
+      {required this.itemCount, required this.itemBuilder, required this.noDataWidget, super.key,
+      this.description,});
+  final int? itemCount;
+  final Widget? Function(BuildContext, int index) itemBuilder;
+  final Widget noDataWidget;
+  final String? description;
   @override
   Widget build(BuildContext context) {
     if (itemCount == null || itemCount == 0) {
@@ -21,18 +18,14 @@ class SafeListView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: context.dynamicHeight(0.2), child: noDataWidget),
-          description != null
-              ? const SizedBox(height: 40)
-              : const SizedBox.shrink(),
-          description != null
-              ? Text(
+          if (description != null) const SizedBox(height: 40) else const SizedBox.shrink(),
+          if (description != null) Text(
                   description!,
                   style: context.textTheme.titleMedium!
                       .copyWith(color: Colors.grey),
-                )
-              : const SizedBox.shrink()
+                ) else const SizedBox.shrink()
         ],
-      ));
+      ),);
     }
     return FadeInUp(
       child: ListView.builder(

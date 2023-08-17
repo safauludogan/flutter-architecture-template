@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/constants/colors.dart';
+import 'package:flutter_architecture_template/core/constants/project_items.dart';
 import 'package:flutter_architecture_template/core/constants/project_variables.dart';
+import 'package:flutter_architecture_template/core/constants/validators.dart';
 import 'package:flutter_architecture_template/core/extension/context_extension.dart';
-import '../../constants/project_items.dart';
-import '../../../core/constants/validators.dart';
 
 bool isPasswordVisible = true;
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.customTextFormFieldAdapter,
-      required this.controller,
-      this.onChanged});
+  const CustomTextFormField({
+    required this.customTextFormFieldAdapter,
+    required this.controller,
+    super.key,
+    this.onChanged,
+  });
   final ICustomTextFormFieldAdapter customTextFormFieldAdapter;
   final TextEditingController controller;
-  final Function(String)? onChanged;
+  final void Function(String value)? onChanged;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -24,7 +25,7 @@ class CustomTextFormField extends StatefulWidget {
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
-    var adapter = widget.customTextFormFieldAdapter.model;
+    final adapter = widget.customTextFormFieldAdapter.model;
     return TextFormField(
       cursorColor: Colors.black,
       onChanged: widget.onChanged != null
@@ -33,7 +34,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             }
           : null,
       controller: widget.controller,
-      validator: (value) => adapter.validator!.call(value),
+      validator: (value) => adapter.validator?.call(value),
       maxLength: adapter.maxLength ?? 20,
       keyboardType: adapter.keyboardType ?? TextInputType.text,
       obscureText:
@@ -48,29 +49,31 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         labelText: adapter.labelText,
         focusedBorder: OutlineInputBorder(
           borderRadius: context.borderRadiusHigh,
-          borderSide:
-              BorderSide(color: ColorConstants.primaryColor, width: 1.0),
+          borderSide: BorderSide(color: ColorConstants.primaryColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: context.borderRadiusHigh,
-          borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         labelStyle: context.textTheme.titleSmall!.copyWith(color: Colors.grey),
-        prefixIconColor: MaterialStateColor.resolveWith((states) =>
-            states.contains(MaterialState.focused)
-                ? ColorConstants.primaryColor
-                : Colors.grey),
+        prefixIconColor: MaterialStateColor.resolveWith(
+          (states) => states.contains(MaterialState.focused)
+              ? ColorConstants.primaryColor
+              : Colors.grey,
+        ),
         suffixIcon: adapter.suffixIcon != null
             ? IconButton(
                 onPressed: () {
-                  setState(() =>
-                      widget.customTextFormFieldAdapter.suffixIconCallback());
+                  setState(
+                    () =>
+                        widget.customTextFormFieldAdapter.suffixIconCallback(),
+                  );
                 },
-                icon: adapter.suffixIcon!)
+                icon: adapter.suffixIcon!,
+              )
             : null,
         border: OutlineInputBorder(
           borderRadius: context.borderRadiusHigh,
-          borderSide: const BorderSide(),
         ),
       ),
     );
@@ -113,13 +116,6 @@ class SearchTextFormFieldAdapter implements ICustomTextFormFieldAdapter {
 }
 
 class CustomTextFormFieldModel {
-  late String labelText;
-  late Widget prefixIcon;
-  int? maxLength;
-  Widget? suffixIcon;
-  TextInputType? keyboardType;
-  Function(String?)? validator;
-
   CustomTextFormFieldModel.email() {
     labelText = ProjectItems.enterEmail;
     prefixIcon = const Icon(Icons.person);
@@ -141,4 +137,10 @@ class CustomTextFormFieldModel {
     labelText = ProjectItems.search;
     prefixIcon = const Icon(Icons.search);
   }
+  late String labelText;
+  late Widget prefixIcon;
+  int? maxLength;
+  Widget? suffixIcon;
+  TextInputType? keyboardType;
+  String? Function(String? value)? validator;
 }

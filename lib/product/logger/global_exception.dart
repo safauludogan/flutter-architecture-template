@@ -9,7 +9,6 @@ class GlobalException {
       }
       return response;
     } catch (e) {
-      print('$e');
       //loglama yap
       return null;
     }

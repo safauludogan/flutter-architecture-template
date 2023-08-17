@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_template/core/components/view/no_network_widget.dart';
+import 'package:flutter_architecture_template/core/init/utils/mixins/wait_for_screen.dart';
 import 'package:flutter_architecture_template/core/init/utils/network/network_change_manager.dart';
-import '../../../init/utils/mixins/wait_for_screen.dart';
-import '../../view/no_network_widget.dart';
 
 abstract class NoNetworkViewModel extends State<NoNetworkWidget>
     with StateMixin {
@@ -12,9 +12,7 @@ abstract class NoNetworkViewModel extends State<NoNetworkWidget>
     networkChangeManager = NetworkChangeManager();
 
     waitForScreen(() {
-      networkChangeManager.handleNetworkChange((result) {
-        updateUI(result);
-      });
+      networkChangeManager.handleNetworkChange(updateUI);
       checkConnectivityFirstTime();
     });
 

@@ -1,21 +1,25 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_architecture_template/core/init/main/main_init.dart';
-import '../../../core/authentication_manager/authentication_manager.dart';
-import '../../../core/init/toast/toast_service.dart';
-import '../../../product/navigator/app_router.dart';
+import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_architecture_template/core/authentication_manager/authentication_manager.dart';
+import 'package:flutter_architecture_template/main.dart';
+import 'package:flutter_architecture_template/product/navigator/app_router.dart';
+
+
+@RoutePage()
 class SplashView extends StatefulWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
   @override
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> with ToastService {
+class _SplashViewState extends State<SplashView> {
   Future<void> startTimer() async {
-    if (AuthenticationManager.instance.checkLoginStatus()) {
-      getIt<AppRouter>().replace(const HomeRoute());
+    if (AuthenticationManager().checkLoginStatus()) {
+      unawaited(getIt<AppRouter>().replace(const HomeRoute()));
     } else {
-      getIt<AppRouter>().replace(const LoginRoute());
+      unawaited(getIt<AppRouter>().replace(const LoginRoute()));
     }
   }
 
@@ -26,6 +30,6 @@ class _SplashViewState extends State<SplashView> with ToastService {
       future: startTimer(),
       builder: (context, snapshot) =>
           const Center(child: CircularProgressIndicator.adaptive()),
-    ));
+    ),);
   }
 }

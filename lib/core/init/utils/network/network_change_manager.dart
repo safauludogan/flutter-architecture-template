@@ -11,11 +11,11 @@ abstract class INetworkChangeManager {
 }
 
 class NetworkChangeManager extends INetworkChangeManager {
-  late final Connectivity _connectivity;
-  late StreamSubscription<ConnectivityResult>? _subscription;
   NetworkChangeManager() {
     _connectivity = Connectivity();
   }
+  late final Connectivity _connectivity;
+  late StreamSubscription<ConnectivityResult>? _subscription;
   @override
   void handleNetworkChange(NetworkCallback onChange) {
     _subscription =
@@ -27,7 +27,8 @@ class NetworkChangeManager extends INetworkChangeManager {
   @override
   Future<NetworkResult> checkConnectivityFirstTime() async {
     return NetworkResult.checkConnectivityResult(
-        await _connectivity.checkConnectivity());
+      await _connectivity.checkConnectivity(),
+    );
   }
 
   @override
@@ -40,14 +41,14 @@ enum NetworkResult {
   on,
   off;
 
-  static NetworkResult checkConnectivityResult(
-      ConnectivityResult connectivityResult) {
-    switch (connectivityResult) {
+  static NetworkResult checkConnectivityResult(ConnectivityResult result) {
+    switch (result) {
       case ConnectivityResult.bluetooth:
       case ConnectivityResult.wifi:
       case ConnectivityResult.ethernet:
       case ConnectivityResult.mobile:
       case ConnectivityResult.vpn:
+      case ConnectivityResult.other:
         return NetworkResult.on;
       case ConnectivityResult.none:
         return NetworkResult.off;

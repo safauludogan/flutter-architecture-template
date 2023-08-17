@@ -1,4 +1,3 @@
-
 import 'package:flutter_architecture_template/core/constants/project_items.dart';
 
 String? validateEmail(String? value) {
@@ -6,8 +5,8 @@ String? validateEmail(String? value) {
     return ProjectItems.wrongEmail;
   }
   if (!RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-      .hasMatch(value)) {
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+  ).hasMatch(value)) {
     return ProjectItems.wrongEmail;
   }
   return null;

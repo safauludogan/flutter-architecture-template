@@ -4,9 +4,7 @@ import 'package:flutter_architecture_template/core/extension/context_extension.d
 
 class CustomRefreshIndicator extends StatelessWidget {
   const CustomRefreshIndicator({
-    super.key,
-    required this.onRefresh,
-    required this.body,
+    required this.onRefresh, required this.body, super.key,
   });
   final Future<void> Function() onRefresh;
   final Widget body;
@@ -17,8 +15,8 @@ class CustomRefreshIndicator extends StatelessWidget {
       onRefresh: onRefresh,
       child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          child: SizedBox(height: context.dynamicHeight(.9), child: body)),
+              parent: AlwaysScrollableScrollPhysics(),),
+          child: SizedBox(height: context.dynamicHeight(.9), child: body),),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_template/core/constants/colors.dart';
-
-import '../../../constants/project_items.dart';
+import 'package:flutter_architecture_template/core/constants/project_items.dart';
 
 abstract class ISocialAdapter {
   Future<String?> make();
@@ -39,10 +38,6 @@ class FacebookAdapter implements ISocialAdapter {
 }
 
 class SocialAdapterModel {
-  final String title;
-  final Color color;
-  final IconData icon;
-
   SocialAdapterModel({
     required this.title,
     required this.color,
@@ -50,15 +45,21 @@ class SocialAdapterModel {
   });
 
   factory SocialAdapterModel.facebook() => SocialAdapterModel(
-      title: ProjectItems.facebook,
-      color: ColorConstants.facebookBlueColor,
-      icon: Icons.facebook);
+        title: ProjectItems.facebook,
+        color: ColorConstants.facebookBlueColor,
+        icon: Icons.facebook,
+      );
   factory SocialAdapterModel.google() => SocialAdapterModel(
-      title: ProjectItems.google,
-      color: ColorConstants.googleRedColor,
-      icon: Icons.g_mobiledata_rounded);
+        title: ProjectItems.google,
+        color: ColorConstants.googleRedColor,
+        icon: Icons.g_mobiledata_rounded,
+      );
   factory SocialAdapterModel.apple() => SocialAdapterModel(
-      title: ProjectItems.apple,
-      color: ColorConstants.appleBlackColor,
-      icon: Icons.apple);
+        title: ProjectItems.apple,
+        color: ColorConstants.appleBlackColor,
+        icon: Icons.apple,
+      );
+  final String title;
+  final Color color;
+  final IconData icon;
 }

@@ -7,5 +7,5 @@ class ProjectVaribles {
   static const highValue = 40.0;
   static const int emailMaxLength = 40;
   static const int passwordMaxLength = 20;
-
+  static const double toastIconHW = 20;
 }

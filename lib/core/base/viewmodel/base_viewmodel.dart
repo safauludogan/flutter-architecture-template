@@ -1,16 +1,16 @@
+import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_architecture_template/core/init/cache/locale_manager.dart';
-import 'package:flutter_architecture_template/product/manager/vexana_manager.dart';
-import 'package:vexana/vexana.dart';
+import 'package:flutter_architecture_template/product/manager/network/network_manager.dart';
 
-abstract class BaseViewModel {
+mixin BaseViewModel {
   late BuildContext baseContext;
-  INetworkManager vexanaManager = VexanaManager.instance.networkManager;
-  INetworkManager get vexanaManagerComputed => vexanaManager;
+  IDioNexusManager networkManager = NetworkManager.instance.networkManager;
+  IDioNexusManager get networkManagerComputed => networkManager;
   LocaleManager localeManager = LocaleManager.instance;
   TickerProvider? tickerProvider;
 
   void setContext(BuildContext context);
   void init();
-  void disp() {}
+  void disp();
 }
